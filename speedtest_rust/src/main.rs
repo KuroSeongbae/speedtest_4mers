@@ -1,34 +1,38 @@
 fn main() {
     println!("Start");
 
-    let opt = ["A", "C", "G", "T"];
+    let opt = ['A', 'C', 'G', 'T'];
     let mut s = String::new();
     let mut s_last = String::new();
-    let len_str: u32 = 13;
-    let change_next: bool;
+    let len_str: usize = 13;
+    let mut change_next: bool;
 
-    for i in 0..len_str {
-        s += opt[0];
+    for _ in 0..len_str {
+        s += &opt[0].to_string();
     }
 
-    for i in 0..len_str {
-        s += opt[opt.len()-1];
+    for _ in 0..len_str {
+        s_last += &opt[opt.len()-1].to_string();
     }
 
     let pos: i32 = 0;
-    let counter: i32 = 1;
+    let mut counter: i32 = 1;
 
     while s != s_last {
         counter += 1;
+        //println!("{}", s);
         change_next = true;
         for i in 0..len_str {
             if change_next {
-                if s[i] == opt[opt.len()-1] {
-                    s[i] = convert(s[i]);
+                let mut s_list: Vec<_> = s.chars().collect();
+                if s_list[i] == opt[opt.len()-1] {
+                    s_list[i] = convert(s_list[i]);
+                    s = s_list.into_iter().collect();
                     change_next = true;
                 }
                 else {
-                    s[i] = convert(s[i]);
+                    s_list[i] = convert(s_list[i]);
+                    s = s_list.into_iter().collect();
                     break;
                 }
             }
@@ -39,7 +43,7 @@ fn main() {
     println!("Finish");
 }
 
-fn convert(&c: char) -> char {
+fn convert(c: char) -> char {
     if c == 'A' {
         return 'C';
     }

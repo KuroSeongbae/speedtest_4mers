@@ -1,5 +1,5 @@
 [package]
-name = "speedtest_4mers"
+name = "speedtest_rust"
 version = "0.1.0"
 edition = "2018"
 
