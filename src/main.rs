@@ -10,9 +10,36 @@ fn main() {
     for i in 0..len_str {
         s += opt[0];
     }
+
+    for i in 0..len_str {
+        s += opt[opt.len()-1];
+    }
+
+    let pos: i32 = 0;
+    let counter: i32 = 1;
+
+    while s != s_last {
+        counter += 1;
+        change_next = true;
+        for i in 0..len_str {
+            if change_next {
+                if s[i] == opt[opt.len()-1] {
+                    s[i] = convert(s[i]);
+                    change_next = true;
+                }
+                else {
+                    s[i] = convert(s[i]);
+                    break;
+                }
+            }
+        }
+    }
+
+    println!("Number of generated k-mers: {}", counter);
+    println!("Finish");
 }
 
-fn converter(&c: char) -> char {
+fn convert(&c: char) -> char {
     if c == 'A' {
         return 'C';
     }
