@@ -61,6 +61,6 @@ int main()
     // cout << s << endl;
     time_t end_time = time(nullptr);
     cout << "Number of generated k-mers: " << counter << endl;
-    cout << "Finish! Needed " << end_time - start_time << endl; 
+    cout << "Finish! Needed " << end_time - start_time << " seconds." << endl; 
     return 0;
 }
