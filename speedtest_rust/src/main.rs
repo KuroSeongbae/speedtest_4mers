@@ -1,5 +1,9 @@
+use chrono::prelude::*;
+
 fn main() {
     println!("Start");
+
+    let start_time = Local::now();
 
     let opt = ['A', 'C', 'G', 'T'];
     let mut s = String::new();
@@ -20,7 +24,7 @@ fn main() {
 
     while s != s_last {
         counter += 1;
-        //println!("{}", s);
+        // println!("{}", s);
         change_next = true;
         for i in 0..len_str {
             if change_next {
@@ -38,9 +42,10 @@ fn main() {
             }
         }
     }
-
+    let end_time = Local::now();
+    let duration = end_time.signed_duration_since(start_time);
     println!("Number of generated k-mers: {}", counter);
-    println!("Finish");
+    println!("Finish! Needed {} seconds.", duration.num_seconds());
 }
 
 fn convert(c: char) -> char {
